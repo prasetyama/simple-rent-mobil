@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Kendaraan extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
+    protected $table = 'kendaraan';
 
     protected $fillable = [
         'user_id',
-        'title',
-        'description',
-        'body'
+        'merk',
+        'model',
+        'plat_number',
+        'tarif'
     ];
 }

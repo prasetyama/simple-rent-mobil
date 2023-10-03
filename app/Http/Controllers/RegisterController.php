@@ -31,6 +31,8 @@ class RegisterController extends Controller
 
         auth()->login($user);
 
+        $user->syncRoles('user');
+
         return redirect('/')->with('success', "Account successfully registered.");
     }
 }

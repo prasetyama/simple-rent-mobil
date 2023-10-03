@@ -8,17 +8,17 @@
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li><a href="{{ route('home.index') }}" class="nav-link px-2 text-white">Home</a></li>
         @auth
-          @role('Admin')
+          @role('admin')
           <li><a href="{{ route('users.index') }}" class="nav-link px-2 text-white">Users</a></li>
           <li><a href="{{ route('roles.index') }}" class="nav-link px-2 text-white">Roles</a></li>
-          @endrole
-          <li><a href="{{ route('posts.index') }}" class="nav-link px-2 text-white">Posts</a></li>
+          <li><a href="{{ route('kendaraan.index') }}" class="nav-link px-2 text-white">Sewa</a></li>
+          <li><a href="{{ route('kendaraan.myBooking') }}" class="nav-link px-2 text-white">Pesanan</a></li>
+          @else
+          <li><a href="{{ route('kendaraan.index') }}" class="nav-link px-2 text-white">Sewa</a></li>
+          <li><a href="{{ route('kendaraan.myBooking') }}" class="nav-link px-2 text-white">Pesanan Saya</a></li>
+          @endif
         @endauth
       </ul>
-
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-        <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-      </form>
 
       @auth
         {{auth()->user()->name}}&nbsp;

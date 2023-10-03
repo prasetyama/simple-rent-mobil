@@ -35,10 +35,11 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     });
 
+    Route::group(['prefix' => 'kendaraan'], function() {
+        Route::get('/', 'KendaraanController@index')->name('kendaraan.index');
+    });
+
     Route::group(['middleware' => ['auth', 'permission']], function() {
-        /**
-         * Logout Routes
-         */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
 
         /**
@@ -54,17 +55,20 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
             Route::delete('/{user}/delete', 'UsersController@destroy')->name('users.destroy');
         });
 
-        /**
-         * User Routes
-         */
-        Route::group(['prefix' => 'posts'], function() {
-            Route::get('/', 'PostsController@index')->name('posts.index');
-            Route::get('/create', 'PostsController@create')->name('posts.create');
-            Route::post('/create', 'PostsController@store')->name('posts.store');
-            Route::get('/{post}/show', 'PostsController@show')->name('posts.show');
-            Route::get('/{post}/edit', 'PostsController@edit')->name('posts.edit');
-            Route::patch('/{post}/update', 'PostsController@update')->name('posts.update');
-            Route::delete('/{post}/delete', 'PostsController@destroy')->name('posts.destroy');
+        Route::group(['prefix' => 'kendaraan'], function() {
+            Route::get('/', 'KendaraanController@index')->name('kendaraan.index');
+            Route::get('/create', 'KendaraanController@create')->name('kendaraan.create');
+            Route::post('/create', 'KendaraanController@store')->name('kendaraan.store');
+            Route::get('/{kendaraan}/show', 'KendaraanController@show')->name('kendaraan.show');
+            Route::get('/{kendaraan}/edit', 'KendaraanController@edit')->name('kendaraan.edit');
+            Route::patch('/{kendaraan}/update', 'KendaraanController@update')->name('kendaraan.update');
+            Route::delete('/{kendaraan}/delete', 'KendaraanController@destroy')->name('kendaraan.destroy');
+
+            Route::get('/{kendaraan}/book', 'KendaraanController@book')->name('kendaraan.book');
+            Route::post('/{kendaraan}/book/process', 'KendaraanController@bookProcess')->name('kendaraan.bookProcess');
+
+            Route::get('/my-booking', 'KendaraanController@myBooking')->name('kendaraan.myBooking');
+            Route::patch('/{booking}/return', 'KendaraanController@return')->name('kendaraan.return');
         });
 
         Route::resource('roles', RolesController::class);
