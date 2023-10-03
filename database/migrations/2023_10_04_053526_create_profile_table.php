@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSewaTable extends Migration
+class CreateProfileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateSewaTable extends Migration
      */
     public function up()
     {
-        Schema::create('sewa', function (Blueprint $table) {
+        Schema::create('profile', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
-            $table->integer('kendaraan_id')->unsigned();
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->integer('total_biaya');
-            $table->boolean('is_return');
-            $table->dateTime('return_date');
+            $table->text('address');
+            $table->bigInteger('phone_number');
+            $table->bigInteger('sim_number');
         });
     }
 
@@ -33,6 +30,6 @@ class CreateSewaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sewa');
+        Schema::dropIfExists('profile');
     }
 }

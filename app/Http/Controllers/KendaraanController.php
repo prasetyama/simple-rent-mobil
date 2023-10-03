@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kendaraan;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Models\Sewa;
 use Spatie\Permission\Models\Role;
@@ -131,8 +132,10 @@ class KendaraanController extends Controller
      */
     public function book(Kendaraan $kendaraan)
     {
+        $profile = Profile::Where('user_id', '=', auth()->id())->first();
         return view('kendaraan.book', [
-            'kendaraan' => $kendaraan
+            'kendaraan' => $kendaraan,
+            'profile' => $profile
         ]);
     }
 
@@ -143,6 +146,9 @@ class KendaraanController extends Controller
         $end_book =  \Carbon\Carbon::createFromFormat('Y-m-d',$request->end_date);
 
         $day = $start_book->diffInDays($end_book);
+
+        $matchThese = ['user_id' => auth()->id()];
+        Profile::updateOrCreate($matchThese,['address' => $request->address, 'phone_number' => $request->phone_number, 'sim_number' => $request->sim_number]);
 
         Sewa::create(array_merge($request->only('start_date', 'end_date'),[
             'user_id' => auth()->id(),
@@ -184,8 +190,9 @@ class KendaraanController extends Controller
 
     public function return($booking)
     {
+        $now = \Carbon\Carbon::now();
         $return = Sewa::where('id', $booking)
-                    ->update(['is_return' => 1]);
+                    ->update(['is_return' => 1, 'return_date' => $now]);
 
         return redirect()->route('kendaraan.myBooking')
             ->withSuccess(__('Kendaraan Telah Dikembalikan.'));

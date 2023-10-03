@@ -7,7 +7,7 @@
     <div class="bg-light p-4 rounded">
         <div class="row" style="margin-bottom: 50px">
             <div class="col-md-8">
-                <h2>Cek Ketersiadaan</h2>
+                <h2>Cek Ketersediaan</h2>
                 <form method="GET" action="/kendaraan">
                     <div class="row">
                         <div class="col-md-5">

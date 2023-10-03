@@ -25,6 +25,38 @@
             <form method="POST" action="{{ route('kendaraan.bookProcess', $kendaraan->id) }}">
                 @csrf
                 <div class="mb-3">
+                    <label for="address" class="form-label">Masukan Alamat Anda</label>
+                    <textarea name="address" id="" cols="50" rows="4" style="min-width: 100%" required>{{ $profile ? $profile->address : '' }}</textarea>
+
+                    @if ($errors->has('address'))
+                        <span class="text-danger text-left">{{ $errors->first('address') }}</span>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="phone_number" class="form-label">No Handphone</label>
+                    <input value="{{ $profile ? $profile->phone_number : '' }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="phone_number" 
+                        placeholder="No Handphone" required>
+
+                    @if ($errors->has('phone_number'))
+                        <span class="text-danger text-left">{{ $errors->first('phone_number') }}</span>
+                    @endif
+                </div>
+                <div class="mb-3">
+                    <label for="sim_number" class="form-label">Masukan Nomor SIM Anda</label>
+                    <input value="{{ $profile ? $profile->sim_number : '' }}" 
+                        type="text" 
+                        class="form-control" 
+                        name="sim_number" 
+                        placeholder="SIM Number" required>
+
+                    @if ($errors->has('sim_number'))
+                        <span class="text-danger text-left">{{ $errors->first('sim_number') }}</span>
+                    @endif
+                </div>
+                <div class="mb-3">
                     <label for="start_book" class="form-label">Tanggal Menyewa</label>
                     <input value="{{ old('start_book') }}" 
                         id="start-datepicker"
