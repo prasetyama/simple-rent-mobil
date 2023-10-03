@@ -44,3 +44,9 @@ php artisan db:seed --class=CreateAdminUserSeeder
 ```Shell
 php artisan serve
 ```
+
+User admin credentials
+```Shell
+email: admin
+password: admin123
+```
