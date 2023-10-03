@@ -1,6 +1,10 @@
 ## Run
 
-Git Clone
+Git Clone and checkout to branch master
+
+```Shell
+git checkout master
+```
 
 type this command to run:
 
