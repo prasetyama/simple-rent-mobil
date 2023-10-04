@@ -1,5 +1,9 @@
 ## Run
 
+TECH STACK : LARAVEL
+Database : MYSQL
+Library : Spatie laravel permission
+
 Git Clone and checkout to branch master
 
 ```Shell
